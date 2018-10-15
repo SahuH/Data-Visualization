@@ -36,6 +36,7 @@ for i in range(len(features)):
     ax[i].legend(loc=4)
     plt.show()
 ```
+![image](https://github.com/harsh-sahu/Data-Visualization/blob/master/img/lineplot.png)
 
 ## Box and Whisker plot
 
@@ -63,6 +64,7 @@ labels = features
 plt.xticks(range(1, len(labels) + 1), labels)
 plt.show()
 ```
+![image](https://github.com/harsh-sahu/Data-Visualization/blob/master/img/boxplot.png)
 
 You can comment out `add_values_on_plot(bp_dict, axes)` if you dont want values to be shown on plot
 ## Distribution plot
@@ -79,7 +81,7 @@ for i in range(len(features)):
 
 plt.show()
 ```
-
+![image](https://github.com/harsh-sahu/Data-Visualization/blob/master/img/distplot.png)
 
 
 # Multivariate Plots
@@ -93,7 +95,7 @@ plt.xlabel(y)
 plt.ylabel(y)
 plt.show()
 ```
-
+![image](https://github.com/harsh-sahu/Data-Visualization/blob/master/img/scatterplot.png)
 ## Reg plot
 
 ```
@@ -103,6 +105,7 @@ data_viz = data[[x,y]]
 sns.regplot(x=x, y=y, data=data)
 plt.show()
 ```
+![image](https://github.com/harsh-sahu/Data-Visualization/blob/master/img/regplot.png)
 
 You can also cap and floor your data like `data = data[[x,y]][data[x]<=data[x].quantile(0.95)]` to remove outliers.
 # Acknowledgement
