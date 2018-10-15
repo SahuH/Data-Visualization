@@ -13,6 +13,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 import numpy as np
+sns.set(color_codes=True)
 
 url = "https://raw.githubusercontent.com/jbrownlee/Datasets/master/pima-indians-diabetes.data.csv"
 features = ['preg', 'plas', 'pres', 'skin', 'test', 'mass', 'pedi', 'age', 'class']
@@ -23,7 +24,7 @@ data = pd.read_csv(url, names=features)
 
 # Univariate Plots
 
-## Line Plot
+## Line plot
 To rapidly get an idea of the range of features, line plot is an ideal choice. This plot is generated using Maplotlib and Pandas 'plot' api.
 ```
 fig, (ax) = plt.subplots(2, 2, sharex=True)
@@ -36,7 +37,7 @@ for i in range(len(features)):
     plt.show()
 ```
 
-## Box and Whisker Plot
+## Box and Whisker plot
 
 To understand features in a summarized fashion, boxplots can be used. It plots 5 values for a given feature. 
 Box shows 25th and 75th percentile with a line in between giving an idea of median while the whiskers shows the min and max value. 
@@ -64,10 +65,19 @@ plt.show()
 ```
 
 You can comment out `add_values_on_plot(bp_dict, axes)` if you dont want values to be shown on plot
-## Distribution Plot
+## Distribution plot
 To get a better and broader understanding of features, distribution plot is a necessity. It uses Seaborn.
 
 ```
+fig, (ax) = plt.subplots(2, 2, sharex=True)
+features = data.columns[:4]
+ax = ax.ravel()
+
+for i in range(len(features)):
+    sns.distplot(data[features[i]], label=features[i], ax=ax[i])
+    ax[i].legend(loc=2)
+
+plt.show()
 ```
 
 
@@ -75,5 +85,24 @@ To get a better and broader understanding of features, distribution plot is a ne
 # Multivariate Plots
 
 ## Scatter plot
+```
+x='plas'
+y='pres'
+plt.scatter(data[x], data[y])
+plt.xlabel(y)
+plt.ylabel(y)
+plt.show()
+```
 
+## Reg plot
+
+```
+x='plas'
+y='pres'
+data_viz = data[[x,y]]
+sns.regplot(x=x, y=y, data=data)
+plt.show()
+```
+
+You can also cap and floor your data like `data = data[[x,y]][data[x]<=data[x].quantile(0.95)]` to remove outliers.
 # Acknowledgement
